@@ -1,6 +1,6 @@
 import React from 'react'
 import Dossier from './Dossier'
-export default function DossierList({Folders,foundUsers}) {
+export default function DossierList({foundUsers}) {
   return (
     <>
       {

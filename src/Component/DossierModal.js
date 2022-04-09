@@ -8,10 +8,16 @@ export default function DossierModal({
   Statut,
   Categorie,
   onChangeCategory,
-  onClickCategory
+  onClickCategory,
+  OnSaveStatut,
+  OnSaveCategory,
+  OnSaveTitre,
+  OnsaveDescription,
+  onClickCreeDossier
 }) {
   const [openStatut, setopenStatut] = useState(false);
   const [openCategory, setopenCategory] = useState(false);
+  function closeModal(){setopen(false)}
   return (
     <div class="modalBackground">
       <div class="modalContainer">
@@ -19,16 +25,18 @@ export default function DossierModal({
           <h1>Creer un Dossier</h1>
         </div>
         <label class="Titre">Titre</label>
-        <input type="text" class="inputTitre" />
+        <input type="text" class="inputTitre" onChange={OnSaveTitre} />
         <br />
         <label class="Description">Description</label>
-        <input type="text" class="inputDescription" />
+        <input type="text" class="inputDescription" onChange={OnsaveDescription} />
         <br />
-        <button class="btn-Creer" onClick={() => setopen(false)}>
+        <button class="btn-Creer" onClick={() => {
+          closeModal();
+          onClickCreeDossier();}}>
           Creer
         </button>
         <form className="formStatut">
-          <select aria-label="State" className="combo" id="comboCategorie">
+          <select aria-label="State" className="combo-Statut" id="comboCategorie" onChange={OnSaveStatut}>
             <option value="Select">Statuts</option>
             {Statut.map((st) => {
               return <option value={st.Statut}>{st.Statut} </option>;
@@ -37,7 +45,7 @@ export default function DossierModal({
           <img
             src="../Media/add.png"
             alt=""
-            className="plus"
+            
             id="ajouteStatut"
             onClick={() => setopenStatut(true)}
           />
@@ -50,7 +58,7 @@ export default function DossierModal({
           ) : null}
         </form>
         <form className="formCategory">
-          <select aria-label="Category" className="combo" id="comboCategorie">
+          <select aria-label="Category" className="combo-Category" id="comboCategorie" onChange={OnSaveCategory}>
             <option value="Category">Categorie</option>
             {Categorie.map((cat) => {
               return <option value={cat.categorie}>{cat.categorie} </option>;
@@ -59,7 +67,7 @@ export default function DossierModal({
           <img
             src="../Media/add.png"
             alt=""
-            className="plus"
+            className="plusCat"
             id="ajouteCategorie"
             onClick={() => setopenCategory(true)}
           />

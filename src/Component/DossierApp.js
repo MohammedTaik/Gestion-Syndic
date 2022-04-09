@@ -1,12 +1,12 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Header from "./Header";
 import SideBar from "./SideBar";
 import DossierCreator from "./DossierCreator";
 import DossierFilter from "./DossierFilter";
 import DossierList from "./DossierList";
-import './Style.css'
+import "./Style.css";
 export default function DossierApp() {
-  /*Use States*/
+  /*----Use States--------*/
   const [Folders, setFolders] = useState([
     {
       id_folder: 1,
@@ -82,7 +82,39 @@ export default function DossierApp() {
     id_Categorie: null,
     categorie: "",
   });
+  /* use state pour Cree Dossier*/
+  const [changeStatut, setchangeStatut] = useState("");
+  const [changeCategory, setchangeCategory] = useState("");
+  const [changeTitre, setchangeTitre] = useState("");
+  const [changeDescription, setchangeDescription] = useState("");
+  /*--function pour cree dossier*/
+  function OnSaveStatut(e) {
+    setchangeStatut(e.target.value);
+  }
+  function OnSaveCategory(e) {
+    setchangeCategory(e.target.value);
+  }
+  function OnSaveTitre(e) {
+    setchangeTitre(e.target.value);
+  }
+  function OnsaveDescription(e) {
+    setchangeDescription(e.target.value);
+  }
+  function onClickCreeDossier() {
+    setFoundUsers([...foundUsers,{
+      id_folder: 5,
+      titre: changeTitre,
+      categorie: changeCategory,
+      statut: changeStatut,
+      description:changeDescription,
+    }]);
+  }
   /*------------------------------------------------------------*/
+  /*--------------API-------------------------*/
+  useEffect(() => {
+    fetch("");
+  });
+  /*-----------------------------------------------------*/
   /*Fonction */
   function handleChangeStatut(e) {
     e.preventDefault();
@@ -94,7 +126,7 @@ export default function DossierApp() {
   }
 
   function handleChangeCategory(s) {
-   s.preventDefault();
+    s.preventDefault();
     setCategoryCopy({ ...CategoryCopy, Categorie: s.target.value });
   }
 
@@ -114,6 +146,11 @@ export default function DossierApp() {
         onClick={handeCreateStatut}
         onChangeCategory={handleChangeCategory}
         onClickCategory={handleCreateCategory}
+        OnSaveStatut={OnSaveStatut}
+        OnSaveCategory={OnSaveCategory}
+        OnSaveTitre={OnSaveTitre}
+        OnsaveDescription={OnsaveDescription}
+        onClickCreeDossier={onClickCreeDossier}
       />
       <DossierFilter
         Categorie={Categorie}

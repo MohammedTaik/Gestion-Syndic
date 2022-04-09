@@ -6,7 +6,12 @@ export default function DossierCreator({
   onClick,
   Categorie,
   onChangeCategory,
-  onClickCategory
+  onClickCategory,
+  OnSaveStatut,
+  OnSaveCategory,
+  OnSaveTitre,
+  OnsaveDescription,
+  onClickCreeDossier
 }) {
   const [isopen, setopen] = useState(false);
   return (
@@ -28,6 +33,11 @@ export default function DossierCreator({
           Categorie={Categorie}
           onChangeCategory={onChangeCategory}
           onClickCategory={onClickCategory}
+          OnSaveStatut={OnSaveStatut}
+          OnSaveCategory={OnSaveCategory}
+          OnSaveTitre={OnSaveTitre}
+          OnsaveDescription={OnsaveDescription}
+          onClickCreeDossier={onClickCreeDossier}
         />
       ) : null}
     </>
